@@ -16,10 +16,7 @@
     │   ├── __init__.py
     │   ├── migrations
     │   │   ├── 0001_initial.py
-    │   │   ├── __init__.py
-    │   │   └── __pycache__
-    │   │       ├── 0001_initial.cpython-38.pyc
-    │   │       └── __init__.cpython-38.pyc
+    │   │   └── __init__.py  
     │   ├── models.py：通过创建类来构建表结构。
     │   ├── tests.py
     │   └── views.py
