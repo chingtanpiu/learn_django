@@ -18,4 +18,4 @@ def show_and_analysis(request):
         print("原生请求体的内容:", request.body)
         # method属性获取请求的方式
         print("请求方式为:", request.method)
-    return render(request, "post.html", ctx)
+    return render(request, "search_post的模板.html", ctx)

@@ -2,12 +2,12 @@
     ├── helloworld
     │   ├── asgi.py
     │   ├── __init__.py
-    │   ├── musicians.py
-    │   ├── search_get.py
-    │   ├── search_post.py
+    │   ├── musicians.py:供urls.py调用。对某个表进行操作。
+    │   ├── search_get.py:供urls.py调用。解析get请求，提取请求数据进行处理并返回
+    │   ├── search_post.py:供urls.py调用。解析post请求，提取请求数据进行处理并返回
     │   ├── settings.py:对数据库、app的配置。配置DB时，NAME是datebase的名字(类似basketball_yc_db1这样的，而不是‘篮球压测服’),而且ENGINE配置'mysql'。
     │   ├── urls.py：运用url()、path()——django4.0中用re_path()兼容此二者，将route与客户端请求路径匹配后，调用views.py中的视图函数或其它py文件的函数(不在helloworld目录也行，只要把文件在urls.py中import)
-    │   ├── views.py：views.py用HttpResponse()返回简单的文本，用render(request, 'templates目录下的模板.html', {'模板变量1'：'views变量1', '模板变量2'：'views变量2'})返回预制模板的样式。views.py可以向模板传列表，想必其它py也能。
+    │   ├── views.py：供urls.py调用。views.py用HttpResponse()返回简单的文本，用render(request, 'templates目录下的模板.html', {'模板变量1'：'views变量1', '模板变量2'：'views变量2'})返回预制模板的样式。views.py可以向模板传列表，想必其它py也能。
     │   └── wsgi.py
     ├── manage.py
     ├── ModelMusicians：django模型使用自带的ORM，使用模型首先要创建一个app，django-admin startapp ModelMusicians(app的名字),然后会产生一个模型目录/helloworld/ModelMusicians，在目录的models.py文件中通过创建类(也就是创建模型)来设计表，之后就是构建表结构了(见‘构建表结构’)，构建之后构建信息在migrations目录内。
@@ -23,10 +23,10 @@
     │   ├── models.py：通过创建类来构建表结构。
     │   ├── tests.py
     │   └── views.py
-    ├── readMe
-    └── templates
-        ├── get.html
-        ├── post.html
+    ├── readme.md
+    └── templates：模板目录，放置(类)视图函数文件的模板
+        ├── search_get模板.html
+        ├── search_post的模板.html
         └── views的模板.html
         
 
