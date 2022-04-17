@@ -1,7 +1,7 @@
 from django.db import models
 
 
-# 类名代表数据库表名（最终表名为ModelMusicians_musicians），且继承了models.Model
+# 在这里通过创建类来构建ORM模型。类名代表数据库表名（最终表名有appnaem前缀，为ModelMusicians_musicians;库名则是服务器配置数据库是创建的djmm， ORM无法操作到库级别，只能操作到数据表），且继承了models.Model
 # 类里面的字段代表数据表中的字段(name)，数据类型则由CharField（相当于varchar）、DateField（相当于datetime）， max_length 参数限定长度
 class Musicians(models.Model):
     name = models.CharField(max_length=20)
