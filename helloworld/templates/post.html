@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>post方法提交表单的模板</title>
+</head>
+<body>
+    <form action="/search_post/" method="post">
+    {# 将浏览器的GET请求转化为POST，无需再在函数处加@require_http_methods()装饰器 #}
+        {% csrf_token %}
+        {# 表格后面还有一个{% csrf_token %}的标签,POST 方法提交的表格，必须有此标签 #}
+        <input type="text" name="query">
+        <input type="submit" value="搜索">
+    </form>
+    <p>{{ rlt }}</p>
+    {# 模板的末尾，我们增加一个rlt记号，为表格处理结果预留位置 #}
+</body>
+</html>

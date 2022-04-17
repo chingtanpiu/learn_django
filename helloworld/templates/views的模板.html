@@ -1,0 +1,19 @@
+<h1>{{tem_param | default:"2002年"}}</h1>
+<h1>{{tem_param | default:"default为模板变量提供一个默认值。如果views传的变量的布尔值是false，则使用指定的默认值。"}}</h1>
+<h1>{{tem_lpbn}}</h1>
+<h1>{{tem_lpbn.0.0}}</h1>
+<h1>{{tem_lpbn.1.0 | upper}}</h1>
+<h1>{{tem_lpbn.1.0 | first | upper}}</h1>
+<h1>{{tem_lpbn.2.0}}</h1>
+<h1>{{link | safe}}</h1>
+{% if tem_lpbn.0.1 == "最佳专辑" %}
+最佳流行专辑
+{% elif tem_lpbn.0.1 == "最佳制作人" %}
+最佳制作人
+{% else %}
+颗粒无收
+{% endif %}
+
+{% for musician in musician_list %}
+{{musician}}
+{% endfor %}
