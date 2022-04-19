@@ -39,9 +39,13 @@
 ORM:ORM将python的代码转化为SQL，SLQ通过pymysql传到DB服务器，务器执行SQL并返回结果。
 
 
+‘配置mysql数据库连接信息’:
+1.修改settings.py文件中的DATABASES配置项
+2.在与settings.py同级目录下的__init__.py中引入pymysql模块并进行设置
+
 
 ‘构建表结构’：
-1.在settings.py中找到INSTALLED_APPS这一项，添加ModelMusicians
+1.在settings.py中找到INSTALLED_APPS这一项，添加app名如ModelMusicians
 2.python3 manage.py migrate   # 创建表结构
 3.python3 manage.py makemigrations ModelMusicians  # 让 Django 知道我们在我们的模型有一些变更
 4.python3 manage.py migrate ModelMusicians   # 创建表结构

@@ -4,7 +4,9 @@ from django.views.decorators.http import require_http_methods
  
 def hello(request):
     # HttpResponse对象之HttpResponse()返回文本，参数为字符串(可以带html标签)
-    return HttpResponse("views的hello视图函数") # 应该只能传字符串
+    return HttpResponse("views的hello视图函数") 
+    # 字符串(可以带html标签)
+    # return HttpResponse("<a href='https://www.runoob.com/'>菜鸟教程</a>")
 
 def runoob1(request):
     a = {}
