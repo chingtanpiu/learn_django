@@ -14,9 +14,8 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
 from . import search_get, views, musicians, search_post
-from django.urls import re_path
+from django.urls import path, re_path, include
 
 
 # 默认的配置
@@ -36,6 +35,7 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path('runoob/', views.runoob),
     re_path('musicians/', musicians.musicians4),
+    re_path('musicians_include/', include("ModelMusicians.urls")),
     re_path(r'^search_get/$', search_get.show_form),
     re_path(r'^search/$', search_get.analysis_form),
     re_path(R'^search_post/$', search_post.show_and_analysis)

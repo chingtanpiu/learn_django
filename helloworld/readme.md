@@ -19,7 +19,8 @@
     │   │   └── __init__.py  
     │   ├── models.py：通过创建类来构建表结构。
     │   ├── tests.py
-    │   └── views.py
+    │   ├── urls.py:路由分发时手动创建。
+    │   └── views.py：创建app时自动创建，路由分发时会用到。
     ├── readme.md
     └── templates：模板目录，放置(类)视图函数文件的模板
         ├── search_get模板.html
@@ -27,6 +28,9 @@
         └── views的模板.html
         
 
+
+
+python3 manage.py runserver 0.0.0.0:8000
 
 创建项目:django-admin startproject helloworld:会创建helloworld项目目录，目录下还有个helloworld的，还有templates目录。
 
