@@ -35,7 +35,7 @@ urlpatterns = [
     re_path(r'^admin/', admin.site.urls),
     re_path('runoob/', views.runoob),
     re_path('musicians/', musicians.musicians4),
-    re_path('musicians_include/', include("ModelMusicians.urls")),
+    re_path('ModelMusicians_appname/', include("ModelMusicians.urls")),
     re_path(r'^search_get/$', search_get.show_form),
     re_path(r'^search/$', search_get.analysis_form),
     re_path(R'^search_post/$', search_post.show_and_analysis)

@@ -54,3 +54,8 @@ ORM:ORM将python的代码转化为SQL，SLQ通过pymysql传到DB服务器，务�
 3.python3 manage.py makemigrations ModelMusicians  # 让 Django 知道我们在我们的模型有一些变更
 4.python3 manage.py migrate ModelMusicians   # 创建表结构
 5.构建信息在migrations目录内
+
+路由转发：
+1.在/helloworld/urls.py中运用include()进行路由分发，规定将某种路由路径的后半部分发到指定的app中
+2.在app目录中创建urls.py和views.py。在urls.py中设置后半部分路径对应的视图函数
+3.访问完整路径时(我的示例中就是/ModelMusicians_appname/musicians_delete/)，就会进行路由分发。
