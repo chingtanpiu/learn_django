@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+from efficiency_platform_server.settings import CACHES
+from .config import _CACHES
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,37 +31,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
-
-SECURE_SSL_REDIRECT = False
-INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'sslserver',
-    'ModelMusicians',
-]
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'helloworld.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 这里设置模板的路径为项目根目录(当然这个也可以设置)下的
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,6 +46,148 @@ TEMPLATES = [
         },
     },
 ]
+
+
+# 日志文件目录
+BASE_LOG_DIR = os.path.join(BASE_DIR, "logs")
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname} {message}',
+#             'style': '{',
+#         },
+#         "default": {
+#             "format": '%(asctime)s %(name)s  %(pathname)s:%(lineno)d %(module)s:%(funcName)s '
+#                       '%(levelname)s- %(message)s',
+#             "datefmt": "%Y-%m-%d %H:%M:%S"
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'DEBUG',
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'default',
+#             # 'filters': ['require_debug_true'],  # 只有在Django debug为True时才在屏幕打印日志
+#         },
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.handlers.TimedRotatingFileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
+#             'when': "D",
+#             'interval': 1,
+#             'formatter': 'default'
+#         },
+#         "request": {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/request.log'),
+#             'formatter': 'default'
+#         },
+#         "server": {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/server.log'),
+#             'formatter': 'default'
+#         },
+#         "root": {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/root.log'),
+#             'formatter': 'default'
+#         },
+
+#         "db_backends": {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/db_backends.log'),
+#             'formatter': 'default'
+#         },
+#         "autoreload": {
+#             'level': 'INFO',
+#             'class': 'logging.FileHandler',
+#             'filename': os.path.join(BASE_DIR, 'logs/autoreload.log'),
+#             'formatter': 'default'
+#         }
+#     },
+#     'loggers': {
+#         # 应用中自定义日志记录器
+#         'mylogger': {
+#             'level': 'DEBUG',
+#             'handlers': ['console', 'file'],
+#             'propagate': True,
+#         },
+#         "django": {
+#             "level": "DEBUG",
+#             "handlers": ["console", "file"],
+#             'propagate': False,
+#         },
+#         "django.request": {
+#             "level": "DEBUG",
+#             "handlers": ["request"],
+#             'propagate': False,
+#         },
+#         "django.server": {
+#             "level": "DEBUG",
+#             "handlers": ["server"],
+#             'propagate': False,
+#         },
+#         "django.db.backends": {
+#             "level": "DEBUG",
+#             "handlers": ["db_backends"],
+#             'propagate': False,
+#         },
+#         "django.utils.autoreload": {
+#             "level": "INFO",
+#             "handlers": ["autoreload"],
+#             'propagate': False,
+#         }
+#     },
+#     'root': {
+#         "level": "DEBUG",
+#         "handlers": ["root"],
+#     }
+# }
+
+# Application definition
+
+SECURE_SSL_REDIRECT = False
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions', # 安装session应用，默认创建项目自动添加
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'rest_framework',
+    'sslserver',
+    'ModelMusicians',
+]
+
+MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',  # 启用session中间件，默认创建项目自动添加
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2 # 指定sessionid在cookies中的保存时长 (两周)
+SESSION_ENGINE = "django.contrib.sessions.backends.cache" # SESSION_ENGINE控制Django在何处存储会话数据，这里将Session的保存目的地更改为缓存
+SESSION_CACHE_ALIAS = 'default' # 使用的缓存别名（默认内存缓存，也可以是memcache），此处别名依赖缓存的设置
+SESSION_COOKIE_NAME = "session_id" # Session的cookie保存在浏览器上时的key
+
+CACHES=_CACHES # CACHES用于设置缓存
+
+ROOT_URLCONF = 'helloworld.urls'
 
 WSGI_APPLICATION = 'helloworld.wsgi.application'
 

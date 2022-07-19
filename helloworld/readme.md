@@ -47,6 +47,11 @@ ORM:ORM将python的代码转化为SQL，SLQ通过pymysql传到DB服务器，务�
 1.修改settings.py文件中的DATABASES配置项
 2.在与settings.py同级目录下的__init__.py中引入pymysql模块并进行设置
 
+‘配置django的session 和 对session的基本操作(新增、删除、读取等操作)’
+见https://zhuanlan.zhihu.com/p/538176950
+
+‘缓存的配置和使用’：见https://zhuanlan.zhihu.com/p/538220265
+
 
 ‘构建表结构’：
 1.在settings.py中找到INSTALLED_APPS这一项，添加app名如ModelMusicians
