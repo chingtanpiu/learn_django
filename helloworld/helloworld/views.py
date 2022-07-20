@@ -14,7 +14,7 @@ def runoob1(request):
     # HttpResponse对象之render()
     return render(request, 'views的模板.html', a) # a字典{"hello":"runoob视图函数"}的hello键值可在模板中的用变量{{ hello }}调用
 
-# 添加require_http_methode装饰器来显示请求方式，但是浏览器默认就是发GET：要么用postman之类的，要么直接在模板中将浏览器的GET请求转为POST(参见post.html/get.html)而无需再用此装饰器
+# 添加require_http_methode装饰器来显示请求方式，但是浏览器默认就是发GET发不了POST：要么用postman之类的，要么直接在模板中将浏览器的GET请求转为POST(参见post.html/get.html)而无需再用此装饰器
 # @require_http_methods(["POST"]) 
 def runoob(request):
     view_param = 0
