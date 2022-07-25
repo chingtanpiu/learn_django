@@ -13,7 +13,7 @@ IS_DEVELOPMENT = False
 # 开发坏境
 CACHES_DEV = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache', # Redis缓存（除了Redis,缓存其实还可以写在文件、数据库、内存中）
+        'BACKEND': 'django_redis.cache.RedisCache', # django-redis是可以让django使用redis作为缓存存储的第三方库。其实除了Redis,缓存其实还可以写在文件、数据库、内存中
         'LOCATION': 'redis://192.168.7.204:6379/1',
         'TIMEOUT': 300, # 缓存超时时间（默认300，None表示永不过期，0表示立即过期）
         'KEY_PREFIX': 'cdb', # 缓存键的前缀
