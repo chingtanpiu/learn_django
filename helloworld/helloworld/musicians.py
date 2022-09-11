@@ -13,7 +13,7 @@ def musicians1(request):
 def musicians2(request):
     # 初始化
     response = ""
-    response1 = ""  
+    response1 = ""
     response2 = ""
     response3 = ""
     

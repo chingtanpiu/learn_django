@@ -35,4 +35,16 @@ CACHES_PRO = {
     }
 }
 
+DATABASE = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'djmm',
+        'HOST': '119.45.121.103',
+        'PORT': 3306,
+        'USER': 'cdb',
+        'PASSWORD': '909089',
+    }
+}
+
 _CACHES = CACHES_PRO if IS_DEVELOPMENT else CACHES_PRO
+_DATABASE = DATABASE

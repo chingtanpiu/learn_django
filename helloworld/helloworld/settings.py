@@ -12,11 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from .config import _CACHES, _DATABASE
 
-from efficiency_platform_server.settings import CACHES
-from .config import _CACHES
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# 获取当前文件(__file__)绝对路径的父目录的父目录
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -29,12 +27,12 @@ SECRET_KEY = 'django-insecure-nv8!ca8cq+oi*y5mi)%*#xxc)q%2wdt#i*lt(uftc8ycykew$c
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 这里设置模板的路径为项目根目录(当然这个也可以设置)下的
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], # 这里设置模板的路径为项目根目录(当然这个也可以设置)下的templates
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -165,6 +163,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'sslserver',
     'ModelMusicians',
 ]
@@ -172,12 +171,13 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',  # 启用session中间件，默认创建项目自动添加
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 解决跨域请求
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 SESSION_COOKIE_AGE = 60 * 60 * 24 * 7 * 2 # 指定sessionid在cookies中的保存时长 (两周)
@@ -187,6 +187,42 @@ SESSION_COOKIE_NAME = "session_id" # Session的cookie保存在浏览器上时的
 
 CACHES=_CACHES # CACHES用于设置缓存
 
+# # 跨域增加忽略
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ORIGIN_ALLOW_ALL = True
+# # CORS_ORIGIN_WHITELIST = ( '*' )
+# CORS_ORIGIN_WHITELIST = (
+#     "http://127.0.0.1:8080",
+#     "http://localhost:8080",
+#     "http://192.168.7.204:8080",
+# )
+# # ACCESS_CONTROL_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_METHODS = (
+#     'DELETE',
+#     'GET',
+#     'OPTIONS',
+#     'PATCH',
+#     'POST',
+#     'PUT',
+#     'VIEW',
+# )
+# CORS_ALLOW_HEADERS = (
+#     'XMLHttpRequest',
+#     'X_FILENAME',
+#     'accept-encoding',
+#     'Content-Type',
+#     'authorization',
+#     'content-tpye',
+#     'dnt',
+#     'origin',
+#     'user-agent',
+#     'x-csrftoken',
+#     'x-requested-with',
+#     'Pragma',
+#     '*',
+#     "access-control-allow-credentials"
+# )
+
 ROOT_URLCONF = 'helloworld.urls'
 
 WSGI_APPLICATION = 'helloworld.wsgi.application'
@@ -195,16 +231,7 @@ WSGI_APPLICATION = 'helloworld.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'djmm',
-        'HOST': '119.45.121.103',
-        'PORT': 3306,
-        'USER': 'cdb',
-        'PASSWORD': '909089',
-    }
-}
+DATABASES = _DATABASE
 
 
 # Password validation
